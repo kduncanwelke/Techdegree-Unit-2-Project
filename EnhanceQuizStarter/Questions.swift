@@ -26,6 +26,7 @@ class Question {
         self.correctAnswer = correctAnswer
     }
     
+    // return shuffled array of questions
     static func shuffleQuestions() -> [Question]? {
         let questions = loadQuestions()
         let shuffledQuestions = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: questions) as? [Question]
@@ -36,7 +37,7 @@ class Question {
         }
     }
     
-    
+    // load array of questions
     static func loadQuestions() -> [Question] {
        return [
             Question(title: "Which breed's proceeds support tiger conservation?",

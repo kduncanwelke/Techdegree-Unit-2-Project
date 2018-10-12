@@ -23,12 +23,13 @@ class ViewController: UIViewController {
     var gameSound: SystemSoundID = 0
     var wrongSound: SystemSoundID = 1
     var rightSound: SystemSoundID = 2
+    var endSound: SystemSoundID = 3
     
     // load set of shuffled questions
     var shuffledQuestions = Question.shuffleQuestions()
 
     
-    // MARK: - Outlets
+    // MARK: - Timer
     
     @IBOutlet weak var timeLeftLabel: UILabel!
     
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     var isTimerOn = false
     
+    // function for when timer is running
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
     }
@@ -45,6 +47,7 @@ class ViewController: UIViewController {
         seconds -= 1
         timeLeftLabel.text = "\(seconds)"
         
+        // if time runs out reset timer, display correct answer, load next round
         if seconds == 0 {
             timer.invalidate()
             timeLeftLabel.text = "You ran out of time!"
@@ -59,12 +62,14 @@ class ViewController: UIViewController {
         }
     }
     
+    // stop timer when answer is selected, hide label during feedback and reset counter
     func hideTimer() {
-        // stop timer at answer check, hide label during feedback and reset counter
         timer.invalidate()
         timeLeftLabel.isHidden = true
         seconds = 15
     }
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var playAgainButton: UIButton!
@@ -83,6 +88,7 @@ class ViewController: UIViewController {
     
     // MARK: - Actions
     
+    // individual actions for buttons, passing result to check correctness and hiding timer
     @IBAction func submitAnswer0(_ sender: UIButton) {
         let result = checkAnswer(chosenAnswer: 0)
         checkResult(result: result, sender: sender)
@@ -107,8 +113,8 @@ class ViewController: UIViewController {
         hideTimer()
     }
     
+    // start new game when play again is pressed
     @IBAction func playAgain(_ sender: UIButton) {
-        
         questionsAsked = 0
         correctQuestions = 0
         nextRound()
@@ -122,15 +128,16 @@ class ViewController: UIViewController {
         loadGameStartSound()
         loadWrongSound()
         loadRightSound()
+        loadEndSound()
         
         playGameStartSound()
         
         // update UI with question
         displayQuestion()
-        
     }
     
-    // MARK: - Helpers
+    // MARK: - Audio Helpers
+    // sounds not included in starter files came from archive.org
     
     func loadGameStartSound() {
         let path = Bundle.main.path(forResource: "GameSound", ofType: "wav")
@@ -162,14 +169,26 @@ class ViewController: UIViewController {
         AudioServicesPlaySystemSound(rightSound)
     }
     
+    func loadEndSound() {
+        let path = Bundle.main.path(forResource: "select", ofType: "wav")
+        let soundUrl = URL(fileURLWithPath: path!)
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &endSound)
+    }
+    
+    func playEndSound() {
+        AudioServicesPlaySystemSound(endSound)
+    }
+    
     // MARK: - UI Updates
     
+    // update stack view of three buttons
     func updateThreeStack(currentQuestion: Question) {
         firstButton3.setTitle(currentQuestion.answers[0], for: .normal)
         secondButton3.setTitle(currentQuestion.answers[1], for: .normal)
         thirdButton3.setTitle(currentQuestion.answers[2], for: .normal)
     }
     
+    // update stack view of four buttons
     func updateFourStack(currentQuestion: Question) {
         firstButton4.setTitle(currentQuestion.answers[0], for: .normal)
         secondButton4.setTitle(currentQuestion.answers[1], for: .normal)
@@ -177,8 +196,8 @@ class ViewController: UIViewController {
         fourthButton4.setTitle(currentQuestion.answers[3], for: .normal)
     }
     
+    // show individual question
     func displayQuestion() {
-        
         if let questionsArray = shuffledQuestions {
             var currentQuestion = questionsArray[questionIndex]
             
@@ -194,28 +213,31 @@ class ViewController: UIViewController {
                     updateFourStack(currentQuestion: currentQuestion)
                 }
             }
-            
             loadButtons()
+            
+            // make sure timer label is displayed, then run timer
             timeLeftLabel.isHidden = false
             timeLeftLabel.text = "\(seconds)"
             runTimer() // start timer for question
+            
             questionField.text = currentQuestion.title
             playAgainButton.isHidden = true
-            
         }
-
     }
     
+    // show score at end of game
     func displayScore() {
-        // Hide the answer buttons
-  
-        
         // Display play again button
         playAgainButton.isHidden = false
         
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct! You missed \(missedQuestions) question(s)."
+        
+        // shuffle questions again at new round
+        shuffledQuestions = Question.shuffleQuestions()
+        questionIndex = 0
     }
     
+    // proceed to next round or end of game
     func nextRound() {
         if questionsAsked == questionsPerRound {
             // Game is over
@@ -224,11 +246,13 @@ class ViewController: UIViewController {
             threeItemStackView.isHidden = true
             fourItemStackView.isHidden = true
             
+            playEndSound()
             displayScore()
         } else {
             // Continue game
             displayQuestion()
         }
+        // reset all button colors at end of round
         resetButtons()
     }
     
@@ -245,7 +269,7 @@ class ViewController: UIViewController {
     }
     
     func resetButtons() {
-    // reset button backgrounds
+    // reset button backgrounds to wipe correct/incorrect color indicators
         firstButton3.backgroundColor = UIColor(red:0.24, green:0.51, blue:0.69, alpha:1.0)
         secondButton3.backgroundColor = UIColor(red:0.24, green:0.51, blue:0.69, alpha:1.0)
         thirdButton3.backgroundColor = UIColor(red:0.24, green:0.51, blue:0.69, alpha:1.0)
@@ -255,7 +279,8 @@ class ViewController: UIViewController {
         fourthButton4.backgroundColor = UIColor(red:0.24, green:0.51, blue:0.69, alpha:1.0)
     }
     
-    // MARK: - Check Answer Logic
+    
+    // MARK: - Check and Confirming Answer Logic
     
     func checkAnswer(chosenAnswer: Int) -> Bool {
         // Increment the questions asked counter
@@ -273,8 +298,26 @@ class ViewController: UIViewController {
             }
     }
     
+    // use bool returned from checkAnswer to display colors to indicate right/wrong answer
+    func checkResult(result: Bool, sender: UIButton) {
+        if result {
+            // if answer was right, change button background to green and play right sounds
+            playRightSound()
+            
+            sender.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+        } else {
+            // if answer was wrong, change button background to red and play wrong sound
+            sender.backgroundColor = UIColor(red:0.69, green:0.28, blue:0.24, alpha:1.0)
+            
+            playWrongSound()
+            showCorrectAnswer() // then show correct answer
+        }
+        // increase questionIndex to move on to next question
+        questionIndex += 1
+        loadNextRound(delay: 2)
+    }
+    
     func showCorrectAnswer() {
-        
         // get current question and current answer to then change correct answer button to green
         guard let questionsArray = shuffledQuestions else { return }
         let currentQuestion = questionsArray[questionIndex]
@@ -299,27 +342,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    // use bool returned from checkAnswer to display colors to indicate right/wrong answer
-    func checkResult(result: Bool, sender: UIButton) {
-        
-        if result {
-            // if answer was right, change button background to green
-            playRightSound()
-            
-            sender.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-        } else {
-            // if answer was wrong, change button background to red
-            sender.backgroundColor = UIColor(red:0.69, green:0.28, blue:0.24, alpha:1.0)
-            
-            playWrongSound()
-            showCorrectAnswer()
-        }
-        // increase questionIndex to move on to next question
-        questionIndex += 1
-        loadNextRound(delay: 2)
-    }
-    
 
+    
 }
 
