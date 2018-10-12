@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var questionsAsked = 0
     var correctQuestions = 0
     var questionIndex = 0
+    var missedQuestions = 0
     
     var gameSound: SystemSoundID = 0
     var wrongSound: SystemSoundID = 1
@@ -28,6 +29,42 @@ class ViewController: UIViewController {
 
     
     // MARK: - Outlets
+    
+    @IBOutlet weak var timeLeftLabel: UILabel!
+    
+    // add timer
+    var seconds = 15
+    var timer = Timer()
+    var isTimerOn = false
+    
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        seconds -= 1
+        timeLeftLabel.text = "\(seconds)"
+        
+        if seconds == 0 {
+            timer.invalidate()
+            timeLeftLabel.text = "You ran out of time!"
+            showCorrectAnswer()
+            
+            missedQuestions += 1
+            questionsAsked += 1
+            questionIndex += 1
+            
+            loadNextRound(delay: 2)
+            seconds = 15
+        }
+    }
+    
+    func hideTimer() {
+        // stop timer at answer check, hide label during feedback and reset counter
+        timer.invalidate()
+        timeLeftLabel.isHidden = true
+        seconds = 15
+    }
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var playAgainButton: UIButton!
@@ -49,21 +86,25 @@ class ViewController: UIViewController {
     @IBAction func submitAnswer0(_ sender: UIButton) {
         let result = checkAnswer(chosenAnswer: 0)
         checkResult(result: result, sender: sender)
+        hideTimer()
     }
     
     @IBAction func submitAnswer1(_ sender: UIButton) {
         let result = checkAnswer(chosenAnswer: 1)
         checkResult(result: result, sender: sender)
+        hideTimer()
     }
     
     @IBAction func submitAnswer2(_ sender: UIButton) {
         let result = checkAnswer(chosenAnswer: 2)
         checkResult(result: result, sender: sender)
+        hideTimer()
     }
     
     @IBAction func submitAnswer3(_ sender: UIButton) {
         let result = checkAnswer(chosenAnswer: 3)
         checkResult(result: result, sender: sender)
+        hideTimer()
     }
     
     @IBAction func playAgain(_ sender: UIButton) {
@@ -155,6 +196,9 @@ class ViewController: UIViewController {
             }
             
             loadButtons()
+            timeLeftLabel.isHidden = false
+            timeLeftLabel.text = "\(seconds)"
+            runTimer() // start timer for question
             questionField.text = currentQuestion.title
             playAgainButton.isHidden = true
             
@@ -169,7 +213,7 @@ class ViewController: UIViewController {
         // Display play again button
         playAgainButton.isHidden = false
         
-        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct! You missed \(missedQuestions) question(s)."
     }
     
     func nextRound() {
@@ -229,8 +273,36 @@ class ViewController: UIViewController {
             }
     }
     
+    func showCorrectAnswer() {
+        
+        // get current question and current answer to then change correct answer button to green
+        guard let questionsArray = shuffledQuestions else { return }
+        let currentQuestion = questionsArray[questionIndex]
+        let rightAnswer = currentQuestion.correctAnswer
+        
+        // if three-item stack view is in use, change correct answer button there to green
+        if threeItemStackView.isHidden == false {
+            switch rightAnswer {
+            case 0: firstButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            case 1: secondButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            case 2: thirdButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            default: break
+            }
+            // if four-item stack view is in use, change correct answer button there to green
+        } else {
+            switch rightAnswer {
+            case 0: firstButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            case 1: secondButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            case 2: thirdButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            case 3: fourthButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+            default: break
+            }
+        }
+    }
+    
     // use bool returned from checkAnswer to display colors to indicate right/wrong answer
     func checkResult(result: Bool, sender: UIButton) {
+        
         if result {
             // if answer was right, change button background to green
             playRightSound()
@@ -238,33 +310,10 @@ class ViewController: UIViewController {
             sender.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
         } else {
             // if answer was wrong, change button background to red
-            playWrongSound()
-            
             sender.backgroundColor = UIColor(red:0.69, green:0.28, blue:0.24, alpha:1.0)
             
-            // get current question and current answer to then change correct answer button to green
-            guard let questionsArray = shuffledQuestions else { return }
-            let currentQuestion = questionsArray[questionIndex]
-            let rightAnswer = currentQuestion.correctAnswer
-            
-            // if three-item stack view is in use, change correct answer button there to green
-            if threeItemStackView.isHidden == false {
-                switch rightAnswer {
-                case 0: firstButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                case 1: secondButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                case 2: thirdButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                default: break
-                }
-                // if four-item stack view is in use, change correct answer button there to green
-            } else {
-                switch rightAnswer {
-                case 0: firstButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                case 1: secondButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                case 2: thirdButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                case 3: fourthButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
-                default: break
-                }
-            }
+            playWrongSound()
+            showCorrectAnswer()
         }
         // increase questionIndex to move on to next question
         questionIndex += 1

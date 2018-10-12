@@ -20,8 +20,8 @@
 
 /* Begin PBXFileReference section */
 		2D12FABD216D4E8F0051A118 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
-		2DEB9BA82171338C00A7A66C /* good.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = good.wav; path = EnhanceQuizStarter/good.wav; sourceTree = "<group>"; };
-		2DEB9BA92171338C00A7A66C /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = error.wav; path = EnhanceQuizStarter/error.wav; sourceTree = "<group>"; };
+		2DEB9BA82171338C00A7A66C /* good.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = good.wav; sourceTree = "<group>"; };
+		2DEB9BA92171338C00A7A66C /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
 		972A72AD2056F06C0059EF4A /* EnhanceQuizStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnhanceQuizStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972A72B02056F06C0059EF4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		972A72B22056F06C0059EF4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,8 +46,6 @@
 		972A72A42056F06C0059EF4A = {
 			isa = PBXGroup;
 			children = (
-				2DEB9BA92171338C00A7A66C /* error.wav */,
-				2DEB9BA82171338C00A7A66C /* good.wav */,
 				972A72AF2056F06C0059EF4A /* EnhanceQuizStarter */,
 				972A72AE2056F06C0059EF4A /* Products */,
 			);
@@ -72,6 +70,8 @@
 				972A72B92056F06C0059EF4A /* LaunchScreen.storyboard */,
 				972A72BC2056F06C0059EF4A /* Info.plist */,
 				972A72C22056F0E40059EF4A /* GameSound.wav */,
+				2DEB9BA92171338C00A7A66C /* error.wav */,
+				2DEB9BA82171338C00A7A66C /* good.wav */,
 			);
 			path = EnhanceQuizStarter;
 			sourceTree = "<group>";
