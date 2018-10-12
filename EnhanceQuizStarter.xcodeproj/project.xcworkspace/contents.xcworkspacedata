@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:EnhanceQuizStarter.xcodeproj">
+      location = "group:/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Techdegree-Unit-2-Project/EnhanceQuizStarter/error.wav">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Techdegree-Unit-2-Project/EnhanceQuizStarter/good.wav">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

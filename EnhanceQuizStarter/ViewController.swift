@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     var questionIndex = 0
     
     var gameSound: SystemSoundID = 0
+    var wrongSound: SystemSoundID = 1
+    var rightSound: SystemSoundID = 2
     
     // load set of shuffled questions
     var shuffledQuestions = Question.shuffleQuestions()
@@ -64,13 +66,25 @@ class ViewController: UIViewController {
         checkResult(result: result, sender: sender)
     }
     
+    @IBAction func playAgain(_ sender: UIButton) {
+        
+        questionsAsked = 0
+        correctQuestions = 0
+        nextRound()
+        playGameStartSound()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // load audio files
         loadGameStartSound()
+        loadWrongSound()
+        loadRightSound()
+        
         playGameStartSound()
         
+        // update UI with question
         displayQuestion()
         
     }
@@ -86,6 +100,28 @@ class ViewController: UIViewController {
     func playGameStartSound() {
         AudioServicesPlaySystemSound(gameSound)
     }
+    
+    func loadWrongSound() {
+        let path = Bundle.main.path(forResource: "error", ofType: "wav")
+        let soundUrl = URL(fileURLWithPath: path!)
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &wrongSound)
+    }
+    
+    func playWrongSound() {
+        AudioServicesPlaySystemSound(wrongSound)
+    }
+    
+    func loadRightSound() {
+        let path = Bundle.main.path(forResource: "good", ofType: "wav")
+        let soundUrl = URL(fileURLWithPath: path!)
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &rightSound)
+    }
+    
+    func playRightSound() {
+        AudioServicesPlaySystemSound(rightSound)
+    }
+    
+    // MARK: - UI Updates
     
     func updateThreeStack(currentQuestion: Question) {
         firstButton3.setTitle(currentQuestion.answers[0], for: .normal)
@@ -175,7 +211,7 @@ class ViewController: UIViewController {
         fourthButton4.backgroundColor = UIColor(red:0.24, green:0.51, blue:0.69, alpha:1.0)
     }
     
-    // MARK: - Actions
+    // MARK: - Check Answer Logic
     
     func checkAnswer(chosenAnswer: Int) -> Bool {
         // Increment the questions asked counter
@@ -197,9 +233,13 @@ class ViewController: UIViewController {
     func checkResult(result: Bool, sender: UIButton) {
         if result {
             // if answer was right, change button background to green
+            playRightSound()
+            
             sender.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
         } else {
             // if answer was wrong, change button background to red
+            playWrongSound()
+            
             sender.backgroundColor = UIColor(red:0.69, green:0.28, blue:0.24, alpha:1.0)
             
             // get current question and current answer to then change correct answer button to green
@@ -229,13 +269,6 @@ class ViewController: UIViewController {
         // increase questionIndex to move on to next question
         questionIndex += 1
         loadNextRound(delay: 2)
-    }
-    
-    @IBAction func playAgain(_ sender: UIButton) {
-        
-        questionsAsked = 0
-        correctQuestions = 0
-        nextRound()
     }
     
 

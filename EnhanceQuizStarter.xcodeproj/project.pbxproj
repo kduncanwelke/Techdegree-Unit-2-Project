@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D12FABE216D4E8F0051A118 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D12FABD216D4E8F0051A118 /* Questions.swift */; };
+		2DEB9BAA2171338C00A7A66C /* good.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DEB9BA82171338C00A7A66C /* good.wav */; };
+		2DEB9BAB2171338C00A7A66C /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DEB9BA92171338C00A7A66C /* error.wav */; };
 		972A72B12056F06C0059EF4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A72B02056F06C0059EF4A /* AppDelegate.swift */; };
 		972A72B32056F06C0059EF4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A72B22056F06C0059EF4A /* ViewController.swift */; };
 		972A72B62056F06C0059EF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972A72B42056F06C0059EF4A /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		2D12FABD216D4E8F0051A118 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		2DEB9BA82171338C00A7A66C /* good.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = good.wav; path = EnhanceQuizStarter/good.wav; sourceTree = "<group>"; };
+		2DEB9BA92171338C00A7A66C /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = error.wav; path = EnhanceQuizStarter/error.wav; sourceTree = "<group>"; };
 		972A72AD2056F06C0059EF4A /* EnhanceQuizStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnhanceQuizStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972A72B02056F06C0059EF4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		972A72B22056F06C0059EF4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +46,8 @@
 		972A72A42056F06C0059EF4A = {
 			isa = PBXGroup;
 			children = (
+				2DEB9BA92171338C00A7A66C /* error.wav */,
+				2DEB9BA82171338C00A7A66C /* good.wav */,
 				972A72AF2056F06C0059EF4A /* EnhanceQuizStarter */,
 				972A72AE2056F06C0059EF4A /* Products */,
 			);
@@ -129,6 +135,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DEB9BAA2171338C00A7A66C /* good.wav in Resources */,
+				2DEB9BAB2171338C00A7A66C /* error.wav in Resources */,
 				972A72C32056F0E40059EF4A /* GameSound.wav in Resources */,
 				972A72BB2056F06C0059EF4A /* LaunchScreen.storyboard in Resources */,
 				972A72B82056F06C0059EF4A /* Assets.xcassets in Resources */,
@@ -284,7 +292,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A8R365GJ52;
 				INFOPLIST_FILE = EnhanceQuizStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.EnhanceQuizStarter;
@@ -301,7 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A8R365GJ52;
 				INFOPLIST_FILE = EnhanceQuizStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.EnhanceQuizStarter;
