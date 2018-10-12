@@ -183,23 +183,51 @@ class ViewController: UIViewController {
         
         guard let questionsArray = shuffledQuestions else { return false }
             let currentQuestion = questionsArray[questionIndex]
-            
+        
+            // compare chosen answer to correct answer, return bool
             if chosenAnswer == currentQuestion.correctAnswer {
                 correctQuestions += 1
-                questionIndex += 1
                 return true
             } else {
-                questionIndex += 1
                 return false
             }
     }
     
+    // use bool returned from checkAnswer to display colors to indicate right/wrong answer
     func checkResult(result: Bool, sender: UIButton) {
         if result {
+            // if answer was right, change button background to green
             sender.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
         } else {
+            // if answer was wrong, change button background to red
             sender.backgroundColor = UIColor(red:0.69, green:0.28, blue:0.24, alpha:1.0)
+            
+            // get current question and current answer to then change correct answer button to green
+            guard let questionsArray = shuffledQuestions else { return }
+            let currentQuestion = questionsArray[questionIndex]
+            let rightAnswer = currentQuestion.correctAnswer
+            
+            // if three-item stack view is in use, change correct answer button there to green
+            if threeItemStackView.isHidden == false {
+                switch rightAnswer {
+                case 0: firstButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                case 1: secondButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                case 2: thirdButton3.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                default: break
+                }
+                // if four-item stack view is in use, change correct answer button there to green
+            } else {
+                switch rightAnswer {
+                case 0: firstButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                case 1: secondButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                case 2: thirdButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                case 3: fourthButton4.backgroundColor = UIColor(red:0.24, green:0.69, blue:0.33, alpha:1.0)
+                default: break
+                }
+            }
         }
+        // increase questionIndex to move on to next question
+        questionIndex += 1
         loadNextRound(delay: 2)
     }
     
