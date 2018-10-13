@@ -47,27 +47,27 @@
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="First"/>
                                         <connections>
-                                            <action selector="submitAnswer0:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k7E-qv-g2g"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dxT-QK-MEO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w71-86-oOA">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w71-86-oOA">
                                         <rect key="frame" x="0.0" y="195.33333333333331" width="374" height="175.33333333333331"/>
                                         <color key="backgroundColor" red="0.23529411759999999" green="0.50588235290000005" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Second"/>
                                         <connections>
-                                            <action selector="submitAnswer1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CPc-z4-PuC"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nCV-9B-FJ6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hk-Xe-t5E">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hk-Xe-t5E">
                                         <rect key="frame" x="0.0" y="390.66666666666663" width="374" height="175.33333333333337"/>
                                         <color key="backgroundColor" red="0.23529411759999999" green="0.50588235290000005" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Third"/>
                                         <connections>
-                                            <action selector="submitAnswer2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="it0-Th-f3P"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RoQ-l5-Bcw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -90,37 +90,37 @@
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="First"/>
                                         <connections>
-                                            <action selector="submitAnswer0:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nTp-sS-PdW"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0I2-Hz-yKo"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZy-3J-ORK">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZy-3J-ORK">
                                         <rect key="frame" x="0.0" y="146.66666666666669" width="374" height="126.33333333333331"/>
                                         <color key="backgroundColor" red="0.23529411759999999" green="0.50588235290000005" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Second"/>
                                         <connections>
-                                            <action selector="submitAnswer1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9uk-lt-T0C"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JVd-ZZ-3tx"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrm-kz-rep">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrm-kz-rep">
                                         <rect key="frame" x="0.0" y="293" width="374" height="126.66666666666669"/>
                                         <color key="backgroundColor" red="0.23529411759999999" green="0.50588235290000005" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Third"/>
                                         <connections>
-                                            <action selector="submitAnswer2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g9L-Gk-nf1"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dRA-gN-0W2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z03-Uc-ETF">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z03-Uc-ETF">
                                         <rect key="frame" x="0.0" y="439.66666666666663" width="374" height="126.33333333333337"/>
                                         <color key="backgroundColor" red="0.23529411759999999" green="0.50588235290000005" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Fourth"/>
                                         <connections>
-                                            <action selector="submitAnswer3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M6J-cy-Jqf"/>
+                                            <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="abe-wc-qMp"/>
                                         </connections>
                                     </button>
                                 </subviews>

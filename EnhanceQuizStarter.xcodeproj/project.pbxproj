@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D12FABE216D4E8F0051A118 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D12FABD216D4E8F0051A118 /* Questions.swift */; };
+		2D72D07C21725182005253F6 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72D07B21725182005253F6 /* Sound.swift */; };
 		2DEB9BAA2171338C00A7A66C /* good.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DEB9BA82171338C00A7A66C /* good.wav */; };
 		2DEB9BAB2171338C00A7A66C /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DEB9BA92171338C00A7A66C /* error.wav */; };
 		2DEB9BAD217154BC00A7A66C /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DEB9BAC217154BC00A7A66C /* select.wav */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		2D12FABD216D4E8F0051A118 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		2D72D07B21725182005253F6 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		2DEB9BA82171338C00A7A66C /* good.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = good.wav; sourceTree = "<group>"; };
 		2DEB9BA92171338C00A7A66C /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
 		2DEB9BAC217154BC00A7A66C /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = select.wav; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			children = (
 				972A72B02056F06C0059EF4A /* AppDelegate.swift */,
 				972A72B22056F06C0059EF4A /* ViewController.swift */,
+				2D72D07B21725182005253F6 /* Sound.swift */,
 				2D12FABD216D4E8F0051A118 /* Questions.swift */,
 				972A72B42056F06C0059EF4A /* Main.storyboard */,
 				972A72B72056F06C0059EF4A /* Assets.xcassets */,
@@ -158,6 +161,7 @@
 				2D12FABE216D4E8F0051A118 /* Questions.swift in Sources */,
 				972A72B32056F06C0059EF4A /* ViewController.swift in Sources */,
 				972A72B12056F06C0059EF4A /* AppDelegate.swift in Sources */,
+				2D72D07C21725182005253F6 /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
